@@ -1,88 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:labflutter/models/product.dart';
+import 'package:labflutter/UI/Widgets/ProductWidget.dart';
 
 class Bodywidget extends StatelessWidget {
+  Bodywidget({super.key});
+
+  // Danh sách sản phẩm mẫu
+  final List<Product> products = [
+    Product(id: 1, name: 'iPhone 17', price: 25000000, quantity: 10,
+        image: '0002.jpg', description: 'Điện thoại Apple mới nhất'),
+    Product(id: 2, name: 'Samsung Galaxy S25', price: 18000000, quantity: 5,
+        image: '0002.jpg', description: 'Flagship Android cao cấp'),
+    Product(id: 3, name: 'MacBook Pro M4', price: 55000000, quantity: 3,
+        image: '0003.jpg', description: 'Laptop mạnh mẽ cho lập trình viên'),
+    Product(id: 4, name: 'AirPods Pro 3', price: 6000000, quantity: 20,
+        image: '0004.jpg', description: 'Tai nghe chống ồn chủ động'),
+    Product(id: 5, name: 'iPad Pro M4', price: 28000000, quantity: 8,
+        image: '0005.jpg', description: 'Máy tính bảng cao cấp'),
+    Product(id: 6, name: 'Apple Watch S10', price: 12000000, quantity: 15,
+        image: '0006.jpg', description: 'Đồng hồ thông minh'),
+    Product(id: 7, name: 'Sony WH-1000XM6', price: 8000000, quantity: 12,
+        image: '0007.jpg', description: 'Tai nghe over-ear chống ồn'),
+    Product(id: 8, name: 'Apple TV 4K', price: 4500000, quantity: 25,
+        image: '0014.jpg', description: 'Thiết bị stream 4K'),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(height: 20),
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Hello',
-                  style: TextStyle(fontSize: 24, color: Colors.red, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, letterSpacing: 2.0, wordSpacing: 4.0, height: 1.5, decoration: TextDecoration.underline, decorationColor: Colors.blue, decorationStyle: TextDecorationStyle.dashed),
-                ),
-                TextSpan(
-                  text: ', ',
-                  style: TextStyle(fontSize: 24, color: Colors.black),
-                ),
-                TextSpan(
-                  text: 'World!',
-                  style: TextStyle(fontSize: 24, color: Colors.green, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 24),
-          // ---- ảnh local từ assets ----
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                'assets/images/0014.jpg',
-                height: 200,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.add_photo_alternate, size: 48, color: Colors.grey),
-                        SizedBox(height: 8),
-                        Text(
-                          'Thêm ảnh vào:\nassets/images/0014.jpg',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey[600], fontSize: 13),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-          SizedBox(height: 24),
-          // ---- ảnh network ----
-          Container(
-            constraints: BoxConstraints(maxWidth: 300),
-            child: Image.network(
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO4vv3RgB2Vw6oxUaI3-PE8xLIfBkMkPhj_Xj3Nac4Mw&s=10',
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: 200,
-                  color: Colors.grey[300],
-                  child: Icon(Icons.image_not_supported),
-                );
-              },
-            ),
-          ),
-          SizedBox(height: 20),
-        ],
+    return GridView.builder(
+      padding: const EdgeInsets.all(8),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,      // tối đa 4 card mỗi hàng
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        mainAxisExtent: 440,    // chiều cao cố định vừa khít nội dung
       ),
+      itemCount: products.length,
+      itemBuilder: (context, index) {
+        return ProductWidget(product: products[index]);
+      },
     );
   }
 }

@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final bool darkMode;
+  final VoidCallback onToggleDarkMode;
+
+  MyAppBar({required this.darkMode, required this.onToggleDarkMode});
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       leading: Icon(Icons.menu),
       centerTitle: true,
       title: const Text('My Flutter App'),
-      actions: [IconButton(onPressed: () {}, icon: Icon(Icons.settings))],
+      actions: [
+        IconButton(
+          onPressed: onToggleDarkMode,
+          icon: Icon(darkMode ? Icons.dark_mode : Icons.light_mode),
+        ),
+      ],
     );
   }
 
