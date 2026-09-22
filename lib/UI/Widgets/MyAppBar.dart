@@ -8,7 +8,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Icon(Icons.menu),
+      // Không set leading thủ công để Scaffold tự hiển thị nút mở Drawer
       centerTitle: true,
       title: const Text('My Flutter App'),
       actions: [
