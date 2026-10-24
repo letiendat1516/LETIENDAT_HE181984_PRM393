@@ -1,0 +1,41 @@
+name: projectpt1
+description: "Lab 5 - Photo API + SQLite Wishlist (MVVM + Riverpod)."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # State management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Network
+  http: ^1.2.2
+
+  # Local storage
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  shared_preferences: ^2.3.2
+
+  # Image loading with cache
+  cached_network_image: ^3.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+  # Riverpod code generation
+  build_runner: ^2.4.13
+  riverpod_generator: ^2.6.3
+  custom_lint: ^0.7.6
+  riverpod_lint: ^2.6.3
+
+flutter:
+  uses-material-design: true
